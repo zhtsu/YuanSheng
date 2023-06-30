@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnhhw1sgu1io8"]
+
+[ext_resource type="Texture2D" uid="uid://4aqcqbk1ii26" path="res://Assets/cat.jpg" id="1_apqlj"]
+[ext_resource type="Script" path="res://Game.gd" id="1_uf67c"]
+
+[sub_resource type="Curve2D" id="Curve2D_kp2mw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 50, -140, 0, 0, 0, 0, 50, 1000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_oo0e0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 150, -140, 0, 0, 0, 0, 150, 1000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_iovxq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 250, -140, 0, 0, 0, 0, 250, 1000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_hkl7c"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 350, -140, 0, 0, 0, 0, 350, 1000)
+}
+point_count = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlif1"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uf67c")
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Header" type="Panel" parent="Container/Left"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="Container/Left/Header"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_apqlj")
+
+[node name="Label" type="Label" parent="Container/Left"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "魅力时刻"
+
+[node name="Power" type="Panel" parent="Container/Left"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Left/Power"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Center" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Keyboard" type="Panel" parent="Container/Center"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_group_ = true
+
+[node name="PathA" type="Path2D" parent="Container/Center/Keyboard"]
+curve = SubResource("Curve2D_kp2mw")
+
+[node name="KeyA" type="PathFollow2D" parent="Container/Center/Keyboard/PathA"]
+position = Vector2(50, -140)
+rotation = 1.5708
+
+[node name="PathB" type="Path2D" parent="Container/Center/Keyboard"]
+curve = SubResource("Curve2D_oo0e0")
+
+[node name="KeyB" type="PathFollow2D" parent="Container/Center/Keyboard/PathB"]
+position = Vector2(150, -140)
+rotation = 1.5708
+
+[node name="PathC" type="Path2D" parent="Container/Center/Keyboard"]
+curve = SubResource("Curve2D_iovxq")
+
+[node name="KeyC" type="PathFollow2D" parent="Container/Center/Keyboard/PathC"]
+position = Vector2(250, -140)
+rotation = 1.5708
+
+[node name="PathD" type="Path2D" parent="Container/Center/Keyboard"]
+curve = SubResource("Curve2D_hkl7c")
+
+[node name="KeyD" type="PathFollow2D" parent="Container/Center/Keyboard/PathD"]
+position = Vector2(350, -140)
+rotation = 1.5708
+
+[node name="Right" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="AccuracyTitle" type="Label" parent="Container/Right"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "准确率"
+horizontal_alignment = 1
+
+[node name="Accuracy" type="Label" parent="Container/Right"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "100%"
+horizontal_alignment = 1
+
+[node name="Collection" type="Panel" parent="Container/Right"]
+custom_minimum_size = Vector2(300, 340)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Container/Right/Collection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rlif1")
+text = "你说的对，但是《原神》是由米哈游自主研发的一款全新开放世界冒险游戏。游戏发生在一个被称作「提瓦特」的幻想世界，在这里，被神选中的人将被授予「神之眼」，导引元素之力。你将扮演一位名为「旅行者」的神秘角色在自由的旅行中邂逅性格各异、能力独特的同伴们，和他们一起击败强敌，找回失散的亲人——同时，逐步发掘「原神」的真相。"
