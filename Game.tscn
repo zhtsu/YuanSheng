@@ -1,36 +1,103 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnhhw1sgu1io8"]
+[gd_scene load_steps=24 format=3 uid="uid://dnhhw1sgu1io8"]
 
 [ext_resource type="Texture2D" uid="uid://4aqcqbk1ii26" path="res://Assets/cat.jpg" id="1_apqlj"]
 [ext_resource type="Script" path="res://Game.gd" id="1_uf67c"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_shps5"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_khidd"]
+keycode = 68
+
+[sub_resource type="Shortcut" id="Shortcut_sivo7"]
+events = [SubResource("InputEventKey_khidd")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6q8na"]
+device = -1
+keycode = 70
+unicode = 70
+
+[sub_resource type="Shortcut" id="Shortcut_han6x"]
+events = [SubResource("InputEventKey_6q8na")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6dmna"]
+device = -1
+keycode = 74
+unicode = 106
+
+[sub_resource type="Shortcut" id="Shortcut_csmei"]
+events = [SubResource("InputEventKey_6dmna")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_2645n"]
+device = -1
+keycode = 75
+unicode = 107
+
+[sub_resource type="Shortcut" id="Shortcut_o13yq"]
+events = [SubResource("InputEventKey_2645n")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_steff"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydh3o"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x48sg"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtkbi"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_of01j"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
 [sub_resource type="Curve2D" id="Curve2D_kp2mw"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 50, -140, 0, 0, 0, 0, 50, 1000)
+"points": PackedVector2Array(0, 0, 0, 0, 50, -130, 0, 0, 0, 0, 50, 518)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_oo0e0"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 150, -140, 0, 0, 0, 0, 150, 1000)
+"points": PackedVector2Array(0, 0, 0, 0, 150, -130, 0, 0, 0, 0, 150, 518)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_iovxq"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 250, -140, 0, 0, 0, 0, 250, 1000)
+"points": PackedVector2Array(0, 0, 0, 0, 250, -130, 0, 0, 0, 0, 250, 518)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_hkl7c"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 350, -140, 0, 0, 0, 0, 350, 1000)
+"points": PackedVector2Array(0, 0, 0, 0, 350, -130, 0, 0, 0, 0, 350, 518)
 }
 point_count = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlif1"]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+
+[sub_resource type="Animation" id="Animation_jyrhk"]
+resource_name = "Begin"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -648), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wu56e"]
+_data = {
+"Begin": SubResource("Animation_jyrhk")
+}
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -86,13 +153,69 @@ custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/Left/Power"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Container/Left/Power"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Left/Power/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="Container/Left/Power/VBoxContainer2"]
+layout_mode = 2
+
+[node name="ButtonBar" type="HBoxContainer" parent="Container/Left/Power/VBoxContainer2"]
+light_mask = 2
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="DButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_shps5")
+button_mask = 0
+shortcut = SubResource("Shortcut_sivo7")
+shortcut_in_tooltip = false
+text = "D"
+
+[node name="FButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_shps5")
+button_mask = 0
+shortcut = SubResource("Shortcut_han6x")
+shortcut_in_tooltip = false
+text = "F"
+
+[node name="JButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_shps5")
+button_mask = 0
+shortcut = SubResource("Shortcut_csmei")
+shortcut_in_tooltip = false
+text = "J"
+
+[node name="KButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_shps5")
+button_mask = 0
+shortcut = SubResource("Shortcut_o13yq")
+shortcut_in_tooltip = false
+text = "K"
 
 [node name="Center" type="VBoxContainer" parent="Container"]
 layout_mode = 2
@@ -101,55 +224,80 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_steff")
 metadata/_edit_group_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Center/Keyboard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Container/Center/Keyboard/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ydh3o")
+
+[node name="Panel2" type="Panel" parent="Container/Center/Keyboard/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_x48sg")
+
+[node name="Panel3" type="Panel" parent="Container/Center/Keyboard/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mtkbi")
+
+[node name="Panel4" type="Panel" parent="Container/Center/Keyboard/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_of01j")
 
 [node name="PathA" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_kp2mw")
 
-[node name="KeyA" type="PathFollow2D" parent="Container/Center/Keyboard/PathA"]
-position = Vector2(50, -140)
-rotation = 1.5708
-
 [node name="PathB" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_oo0e0")
-
-[node name="KeyB" type="PathFollow2D" parent="Container/Center/Keyboard/PathB"]
-position = Vector2(150, -140)
-rotation = 1.5708
 
 [node name="PathC" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_iovxq")
 
-[node name="KeyC" type="PathFollow2D" parent="Container/Center/Keyboard/PathC"]
-position = Vector2(250, -140)
-rotation = 1.5708
-
 [node name="PathD" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_hkl7c")
-
-[node name="KeyD" type="PathFollow2D" parent="Container/Center/Keyboard/PathD"]
-position = Vector2(350, -140)
-rotation = 1.5708
 
 [node name="Right" type="VBoxContainer" parent="Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="AccuracyTitle" type="Label" parent="Container/Right"]
+[node name="TimerTitle" type="Label" parent="Container/Right"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "准确率"
+text = "计时"
 horizontal_alignment = 1
 
-[node name="Accuracy" type="Label" parent="Container/Right"]
+[node name="Timer" type="Label" parent="Container/Right"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "100%"
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="ScoreTitle" type="Label" parent="Container/Right"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "得分"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Container/Right"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "0"
 horizontal_alignment = 1
 
 [node name="Collection" type="Panel" parent="Container/Right"]
-custom_minimum_size = Vector2(300, 340)
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -165,3 +313,13 @@ grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rlif1")
 text = "你说的对，但是《原神》是由米哈游自主研发的一款全新开放世界冒险游戏。游戏发生在一个被称作「提瓦特」的幻想世界，在这里，被神选中的人将被授予「神之眼」，导引元素之力。你将扮演一位名为「旅行者」的神秘角色在自由的旅行中邂逅性格各异、能力独特的同伴们，和他们一起击败强敌，找回失散的亲人——同时，逐步发掘「原神」的真相。"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wu56e")
+}
+
+[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/DButton" to="." method="_on_d_button_pressed"]
+[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/FButton" to="." method="_on_f_button_pressed"]
+[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/JButton" to="." method="_on_j_button_pressed"]
+[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/KButton" to="." method="_on_k_button_pressed"]
