@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://crq7dv30tbhd0"]
 
-[ext_resource type="Script" path="res://Key.gd" id="1_ktasd"]
+[ext_resource type="Script" path="res://Scenes/Key.gd" id="1_ypwk3"]
 
 [node name="Key" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ktasd")
+script = ExtResource("1_ypwk3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(90, 130)

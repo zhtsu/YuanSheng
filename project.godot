@@ -12,7 +12,7 @@ config_version=5
 
 config/name="猿声"
 config/description="由 zhtsu 自主研发的一款全新音乐游戏"
-run/main_scene="res://Starter.tscn"
+run/main_scene="res://Scenes/Starter.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.png"
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://b77rq61q3de6w"]
 
-[ext_resource type="Script" path="res://Starter.gd" id="1_7wpx0"]
-[ext_resource type="Texture2D" uid="uid://bi5p78dvt4u0o" path="res://Assets/men.png" id="1_kkx5r"]
-[ext_resource type="Texture2D" uid="uid://d6pqy4418ls7" path="res://Assets/bubble.png" id="2_uqfv0"]
-[ext_resource type="Texture2D" uid="uid://dmj2cwkn76f8p" path="res://Assets/bubble_hover.png" id="4_e32jx"]
-[ext_resource type="AudioStream" uid="uid://dlm5pklb1phvr" path="res://Assets/start.mp3" id="5_1sl2c"]
+[ext_resource type="Script" path="res://Scenes/Starter.gd" id="1_7tntp"]
+[ext_resource type="Texture2D" uid="uid://bi5p78dvt4u0o" path="res://Assets/men.png" id="2_fqfqa"]
+[ext_resource type="Texture2D" uid="uid://d6pqy4418ls7" path="res://Assets/bubble.png" id="3_o5eow"]
+[ext_resource type="Texture2D" uid="uid://dmj2cwkn76f8p" path="res://Assets/bubble_hover.png" id="4_yvnne"]
+[ext_resource type="AudioStream" uid="uid://dlm5pklb1phvr" path="res://Assets/start.mp3" id="5_nwd82"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_m7in3"]
 device = -1
@@ -53,7 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7wpx0")
+script = ExtResource("1_7tntp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -69,7 +69,7 @@ layout_mode = 0
 offset_left = 538.0
 offset_right = 1013.0
 offset_bottom = 791.0
-texture = ExtResource("1_kkx5r")
+texture = ExtResource("2_fqfqa")
 
 [node name="StartButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(400, 200)
@@ -79,9 +79,10 @@ offset_top = 116.0
 offset_right = 506.0
 offset_bottom = 316.0
 shortcut = SubResource("Shortcut_ub6l2")
-texture_normal = ExtResource("2_uqfv0")
-texture_pressed = ExtResource("2_uqfv0")
-texture_hover = ExtResource("4_e32jx")
+shortcut_in_tooltip = false
+texture_normal = ExtResource("3_o5eow")
+texture_pressed = ExtResource("3_o5eow")
+texture_hover = ExtResource("4_yvnne")
 
 [node name="QuitButton" type="Button" parent="."]
 custom_minimum_size = Vector2(200, 100)
@@ -103,7 +104,8 @@ shortcut = SubResource("Shortcut_ws8xu")
 text = "关闭"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_1sl2c")
+stream = ExtResource("5_nwd82")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

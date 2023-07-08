@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4aqcqbk1ii26"
-path="res://.godot/imported/cat.jpg-68697cc95f969954a778fa3143a0fa71.ctex"
+uid="uid://bo5nh38taaw22"
+path="res://.godot/imported/tang.jpg-b576d825f771e62ad1b8e8b18f8bc3c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cat.jpg"
-dest_files=["res://.godot/imported/cat.jpg-68697cc95f969954a778fa3143a0fa71.ctex"]
+source_file="res://Assets/tang.jpg"
+dest_files=["res://.godot/imported/tang.jpg-b576d825f771e62ad1b8e8b18f8bc3c2.ctex"]
 
 [params]
 

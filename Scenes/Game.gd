@@ -3,7 +3,8 @@ extends Control
 signal game_over
 signal game_start
 
-const KEY_SCENE = preload("res://Key.tscn")
+const KEY_SCENE = preload("res://Scenes/Key.tscn")
+const END_SCENE = preload("res://Scenes/End.tscn")
 const NEXT_PROGRESS = {
 	128: 258,
 	258: 388,
@@ -17,6 +18,8 @@ const MAX_WORD_COUNT = 134
 var PATH_DICT
 
 var key_speed = 10
+var game_timer = 0
+var start_timer = 3
 var words_dict = {}
 var next_created_follow_number = 0
 var collected_word_number = 0
@@ -79,8 +82,6 @@ func _down_keys():
 	_destroy_bottom_key()
 	if next_created_follow_number < MAX_WORD_COUNT:
 		_create_next_follow()
-	else:
-		emit_signal("game_over")
 	
 	for follow in $Container/Center/Keyboard/PathD.get_children():
 		follow.progress = NEXT_PROGRESS.get(int(follow.progress))
@@ -130,6 +131,8 @@ func _handle_keydown(path_key:String):
 	else:
 		$Container/Right/Collection/Words.append_text("X")
 	collected_word_number += 1
+	if collected_word_number == MAX_WORD_COUNT:
+		emit_signal("game_over")
 
 func _on_d_button_pressed():
 	_handle_keydown("D")
@@ -151,9 +154,39 @@ func _on_k_button_pressed():
 	_down_keys()
 
 
+func _disable_buttons():
+	$Container/Left/Power/VBoxContainer2/ButtonBar.process_mode = Node.PROCESS_MODE_DISABLED
+
+
 func _game_over():
-	pass
+	_disable_buttons()
+	$GameTimer.stop()
+	$AnimationPlayer.play("End")
+	var game_over_scene = END_SCENE.instantiate()
+	add_child(game_over_scene)
 	
 
 func _game_start():
-	pass
+	$StartMask.hide()
+	$GameTimer.start()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Begin":
+		$StartTimer.start()
+
+
+func _on_start_timer_timeout():
+	start_timer -= 1
+	$StartMask/Count.text = str(start_timer)
+	if start_timer < 0:
+		emit_signal("game_start")
+		$StartTimer.stop()
+
+
+func _on_game_timer_timeout():
+	game_timer += 1
+	var minute = game_timer / 60
+	var second = game_timer - (minute * 60)
+	var format_string = "%02d:%02d"
+	$Container/Right/Timer.text = format_string % [minute, second]
