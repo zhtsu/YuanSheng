@@ -19,6 +19,7 @@ var PATH_DICT
 var key_speed = 10
 var words_dict = {}
 var next_created_follow_number = 0
+var collected_word_number = 0
 var current_follow_queue = []
 # A follow-path for every follow
 var current_follow_path_queue = []
@@ -96,12 +97,6 @@ func _gen_path_key_pool():
 	return path_key_pool
 
 
-func _is_correct_keydown(path_key:String):
-	if not current_follow_path_queue.is_empty():
-		return current_follow_path_queue.front() == path_key
-	return false
-
-
 func _destroy_bottom_key():
 	if not current_follow_queue.is_empty():
 		var deleted_follow = current_follow_queue.front()
@@ -122,29 +117,43 @@ func _create_next_follow():
 	next_created_follow_number += 1
 
 
+func _is_correct_keydown(path_key:String):
+	if not current_follow_path_queue.is_empty():
+		return current_follow_path_queue.front() == path_key
+	return false
+
+
+func _handle_keydown(path_key:String):
+	if _is_correct_keydown(path_key):
+		$Container/Right/Collection/Words.append_text(
+			words_dict.get(collected_word_number))
+	else:
+		$Container/Right/Collection/Words.append_text("X")
+	collected_word_number += 1
+
 func _on_d_button_pressed():
-	if _is_correct_keydown("D"):
-		pass
+	_handle_keydown("D")
 	_down_keys()
 
 
 func _on_f_button_pressed():
-	if _is_correct_keydown("F"):
-		pass
+	_handle_keydown("F")
 	_down_keys()
 
 
 func _on_j_button_pressed():
-	if _is_correct_keydown("J"):
-		pass
+	_handle_keydown("J")
 	_down_keys()
 
 
 func _on_k_button_pressed():
-	if _is_correct_keydown("K"):
-		pass
+	_handle_keydown("K")
 	_down_keys()
 
 
 func _game_over():
+	pass
+	
+
+func _game_start():
 	pass
