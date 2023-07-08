@@ -255,16 +255,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_of01j")
 
-[node name="PathA" type="Path2D" parent="Container/Center/Keyboard"]
+[node name="PathD" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_kp2mw")
 
-[node name="PathB" type="Path2D" parent="Container/Center/Keyboard"]
+[node name="PathF" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_oo0e0")
 
-[node name="PathC" type="Path2D" parent="Container/Center/Keyboard"]
+[node name="PathJ" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_iovxq")
 
-[node name="PathD" type="Path2D" parent="Container/Center/Keyboard"]
+[node name="PathK" type="Path2D" parent="Container/Center/Keyboard"]
 curve = SubResource("Curve2D_hkl7c")
 
 [node name="Right" type="VBoxContainer" parent="Container"]
@@ -303,7 +303,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 metadata/_edit_group_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Container/Right/Collection"]
+[node name="Words" type="RichTextLabel" parent="Container/Right/Collection"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
