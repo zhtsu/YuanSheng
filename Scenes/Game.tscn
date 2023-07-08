@@ -1,7 +1,17 @@
-[gd_scene load_steps=25 format=3 uid="uid://dnhhw1sgu1io8"]
+[gd_scene load_steps=28 format=3 uid="uid://dnhhw1sgu1io8"]
 
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1_bv8oq"]
 [ext_resource type="Texture2D" uid="uid://bo5nh38taaw22" path="res://Assets/tang.jpg" id="2_upusw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jgl8"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nvv46"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_cwcjf"]
+events = [SubResource("InputEventKey_nvv46")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_shps5"]
 
@@ -234,6 +244,17 @@ size_flags_vertical = 3
 [node name="HSeparator" type="HSeparator" parent="Container/Left/Power/VBoxContainer2"]
 layout_mode = 2
 
+[node name="RestartButton" type="Button" parent="Container/Left/Power/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5jgl8")
+shortcut = SubResource("Shortcut_cwcjf")
+text = "重开"
+
+[node name="HSeparator2" type="HSeparator" parent="Container/Left/Power/VBoxContainer2"]
+layout_mode = 2
+
 [node name="ButtonBar" type="HBoxContainer" parent="Container/Left/Power/VBoxContainer2"]
 light_mask = 2
 custom_minimum_size = Vector2(0, 50)
@@ -417,6 +438,7 @@ text = "3"
 
 [connection signal="game_over" from="." to="." method="_game_over"]
 [connection signal="game_start" from="." to="." method="_game_start"]
+[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/DButton" to="." method="_on_d_button_pressed"]
 [connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/FButton" to="." method="_on_f_button_pressed"]
 [connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/JButton" to="." method="_on_j_button_pressed"]
