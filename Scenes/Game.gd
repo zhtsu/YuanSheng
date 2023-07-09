@@ -15,8 +15,9 @@ const NEXT_PROGRESS = {
 }
 const MAX_WORD_COUNT = 134
 
-var path_dict
+var path_dict = {}
 var words_dict = {}
+var pinyin_dict = {}
 
 var game_timer = 0
 var start_timer = 3
@@ -36,6 +37,10 @@ func _ready():
 		words_dict[i] = words[i]
 	words_file.close()
 	
+	var pinyin_file = FileAccess.open("res://Assets/pinyin.json", FileAccess.READ)
+	pinyin_dict = JSON.parse_string(pinyin_file.get_as_text())
+	words_file.close()
+	
 	_reset_game()
 	
 	$AnimationPlayer.play("Begin")
@@ -53,6 +58,8 @@ func _clear_follows():
 
 
 func _reset_game():
+	$Container/Right/Collection/Words.clear()
+	
 	_disable_buttons()
 	
 	path_dict = {
@@ -147,11 +154,14 @@ func _is_correct_keydown(path_key:String):
 
 func _handle_keydown(path_key:String):
 	if _is_correct_keydown(path_key):
-		$Container/Right/Collection/Words.append_text(
-			words_dict.get(keydown_count))
+		var word = words_dict.get(keydown_count)
+		var pinyin = pinyin_dict.get(word)
+		$Container/Right/Collection/Words.append_text(word)
+		await $PinyinPlayer.play_pinyin_audio(pinyin)
 		correct_word_count += 1
 	else:
 		$Container/Right/Collection/Words.append_text("X")
+		await $PinyinPlayer.play_pinyin_audio("error")
 	
 	keydown_count += 1
 	
@@ -209,6 +219,7 @@ func _game_over():
 	$GameTimer.stop()
 	$AnimationPlayer.play("End")
 	var game_over_scene = END_SCENE.instantiate()
+	game_over_scene.connect("restart", _on_restart_button_pressed)
 	add_child(game_over_scene)
 	
 

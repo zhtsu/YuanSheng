@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm1t3d3f6xh1g"]
+
+[ext_resource type="Script" path="res://Scenes/PinyinPlayer.gd" id="1_lx26a"]
+
+[node name="PinyinPlayer" type="Node"]
+script = ExtResource("1_lx26a")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 12.0

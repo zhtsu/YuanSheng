@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://dnhhw1sgu1io8"]
+[gd_scene load_steps=29 format=3 uid="uid://dnhhw1sgu1io8"]
 
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1_bv8oq"]
 [ext_resource type="Texture2D" uid="uid://bo5nh38taaw22" path="res://Assets/tang.jpg" id="2_upusw"]
+[ext_resource type="PackedScene" uid="uid://dm1t3d3f6xh1g" path="res://Scenes/PinyinPlayer.tscn" id="3_row12"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jgl8"]
 
@@ -435,6 +436,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 200
 text = "3"
+
+[node name="PinyinPlayer" parent="." instance=ExtResource("3_row12")]
 
 [connection signal="game_over" from="." to="." method="_game_over"]
 [connection signal="game_start" from="." to="." method="_game_start"]
