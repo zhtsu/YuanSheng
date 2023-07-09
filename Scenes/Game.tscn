@@ -1,8 +1,16 @@
-[gd_scene load_steps=29 format=3 uid="uid://dnhhw1sgu1io8"]
+[gd_scene load_steps=31 format=3 uid="uid://dnhhw1sgu1io8"]
 
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1_bv8oq"]
 [ext_resource type="Texture2D" uid="uid://bo5nh38taaw22" path="res://Assets/tang.jpg" id="2_upusw"]
+[ext_resource type="Shader" path="res://Shaders/ProgressBar.gdshader" id="3_cowq7"]
 [ext_resource type="PackedScene" uid="uid://dm1t3d3f6xh1g" path="res://Scenes/PinyinPlayer.tscn" id="3_row12"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q27u7"]
+shader = ExtResource("3_cowq7")
+shader_parameter/cutoff = 0.04
+shader_parameter/wave_size = 0.033
+shader_parameter/wave_frequency = 0.05
+shader_parameter/wave_speed = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jgl8"]
 
@@ -225,12 +233,12 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "魅力时刻"
 
-[node name="Power" type="Panel" parent="Container/Left"]
+[node name="Panel" type="Panel" parent="Container/Left"]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Container/Left/Power"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Container/Left/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -238,14 +246,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/Left/Power/VBoxContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Left/Panel/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HSeparator" type="HSeparator" parent="Container/Left/Power/VBoxContainer2"]
+[node name="ProgressBar" type="ColorRect" parent="Container/Left/Panel/VBoxContainer2/VBoxContainer"]
+material = SubResource("ShaderMaterial_q27u7")
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+color = Color(1, 0.627451, 0.501961, 1)
+
+[node name="HSeparator" type="HSeparator" parent="Container/Left/Panel/VBoxContainer2"]
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="Container/Left/Power/VBoxContainer2"]
+[node name="RestartButton" type="Button" parent="Container/Left/Panel/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -253,15 +269,15 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_5jgl8")
 shortcut = SubResource("Shortcut_cwcjf")
 text = "重开"
 
-[node name="HSeparator2" type="HSeparator" parent="Container/Left/Power/VBoxContainer2"]
+[node name="HSeparator2" type="HSeparator" parent="Container/Left/Panel/VBoxContainer2"]
 layout_mode = 2
 
-[node name="ButtonBar" type="HBoxContainer" parent="Container/Left/Power/VBoxContainer2"]
+[node name="ButtonBar" type="HBoxContainer" parent="Container/Left/Panel/VBoxContainer2"]
 light_mask = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="DButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+[node name="DButton" type="Button" parent="Container/Left/Panel/VBoxContainer2/ButtonBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -272,7 +288,7 @@ shortcut = SubResource("Shortcut_sivo7")
 shortcut_in_tooltip = false
 text = "D"
 
-[node name="FButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+[node name="FButton" type="Button" parent="Container/Left/Panel/VBoxContainer2/ButtonBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -283,7 +299,7 @@ shortcut = SubResource("Shortcut_han6x")
 shortcut_in_tooltip = false
 text = "F"
 
-[node name="JButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+[node name="JButton" type="Button" parent="Container/Left/Panel/VBoxContainer2/ButtonBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -294,7 +310,7 @@ shortcut = SubResource("Shortcut_csmei")
 shortcut_in_tooltip = false
 text = "J"
 
-[node name="KButton" type="Button" parent="Container/Left/Power/VBoxContainer2/ButtonBar"]
+[node name="KButton" type="Button" parent="Container/Left/Panel/VBoxContainer2/ButtonBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -441,11 +457,11 @@ text = "3"
 
 [connection signal="game_over" from="." to="." method="_game_over"]
 [connection signal="game_start" from="." to="." method="_game_start"]
-[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/DButton" to="." method="_on_d_button_pressed"]
-[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/FButton" to="." method="_on_f_button_pressed"]
-[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/JButton" to="." method="_on_j_button_pressed"]
-[connection signal="pressed" from="Container/Left/Power/VBoxContainer2/ButtonBar/KButton" to="." method="_on_k_button_pressed"]
+[connection signal="pressed" from="Container/Left/Panel/VBoxContainer2/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Container/Left/Panel/VBoxContainer2/ButtonBar/DButton" to="." method="_on_d_button_pressed"]
+[connection signal="pressed" from="Container/Left/Panel/VBoxContainer2/ButtonBar/FButton" to="." method="_on_f_button_pressed"]
+[connection signal="pressed" from="Container/Left/Panel/VBoxContainer2/ButtonBar/JButton" to="." method="_on_j_button_pressed"]
+[connection signal="pressed" from="Container/Left/Panel/VBoxContainer2/ButtonBar/KButton" to="." method="_on_k_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

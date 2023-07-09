@@ -152,6 +152,19 @@ func _is_correct_keydown(path_key:String):
 	return false
 
 
+func _update_progress_bar():
+	# Update accuracy
+	var progress
+	if keydown_count == 0:
+		progress = 0.04
+	else:
+		progress = float(keydown_count) / float(MAX_WORD_COUNT)
+	
+	progress = clamp(progress, 0.04, 1.0)
+	$Container/Left/Panel/VBoxContainer2/VBoxContainer/ProgressBar.material.set_shader_parameter("cutoff", progress)
+
+
+
 func _handle_keydown(path_key:String):
 	if _is_correct_keydown(path_key):
 		var word = words_dict.get(keydown_count)
@@ -164,6 +177,8 @@ func _handle_keydown(path_key:String):
 		await $PinyinPlayer.play_pinyin_audio("error")
 	
 	keydown_count += 1
+	
+	_update_progress_bar()
 	
 	if keydown_count == MAX_WORD_COUNT:
 		emit_signal("game_over")
@@ -199,19 +214,19 @@ func _on_k_button_pressed():
 
 
 func _disable_buttons():
-	$Container/Left/Power/VBoxContainer2/RestartButton.disabled = true
-	$Container/Left/Power/VBoxContainer2/ButtonBar/DButton.disabled = true
-	$Container/Left/Power/VBoxContainer2/ButtonBar/FButton.disabled = true
-	$Container/Left/Power/VBoxContainer2/ButtonBar/JButton.disabled = true
-	$Container/Left/Power/VBoxContainer2/ButtonBar/KButton.disabled = true
+	$Container/Left/Panel/VBoxContainer2/RestartButton.disabled = true
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/DButton.disabled = true
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/FButton.disabled = true
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/JButton.disabled = true
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/KButton.disabled = true
 
 
 func _enable_buttons():
-	$Container/Left/Power/VBoxContainer2/RestartButton.disabled = false
-	$Container/Left/Power/VBoxContainer2/ButtonBar/DButton.disabled = false
-	$Container/Left/Power/VBoxContainer2/ButtonBar/FButton.disabled = false
-	$Container/Left/Power/VBoxContainer2/ButtonBar/JButton.disabled = false
-	$Container/Left/Power/VBoxContainer2/ButtonBar/KButton.disabled = false
+	$Container/Left/Panel/VBoxContainer2/RestartButton.disabled = false
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/DButton.disabled = false
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/FButton.disabled = false
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/JButton.disabled = false
+	$Container/Left/Panel/VBoxContainer2/ButtonBar/KButton.disabled = false
 
 
 func _game_over():
