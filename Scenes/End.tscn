@@ -30,7 +30,8 @@ border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="InputEventKey" id="InputEventKey_k72pu"]
 device = -1
-keycode = 4194305
+keycode = 32
+unicode = 32
 
 [sub_resource type="Shortcut" id="Shortcut_qpknx"]
 events = [SubResource("InputEventKey_k72pu")]
@@ -80,6 +81,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ojd16")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_b3jwr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dtohb")
 shortcut = SubResource("Shortcut_qpknx")
+shortcut_in_tooltip = false
 text = "重开"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
@@ -97,6 +99,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ojd16")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_b3jwr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dtohb")
 shortcut = SubResource("Shortcut_qpknx")
+shortcut_in_tooltip = false
 text = "退出"
 
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
