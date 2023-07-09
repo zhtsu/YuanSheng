@@ -28,10 +28,10 @@ var current_follow_queue = []
 # A follow-path for every follow
 var current_follow_path_queue = []
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var words_file = FileAccess.open("res://Assets/words.txt", FileAccess.READ)
+	print(words_file)
 	var words = words_file.get_as_text()
 	for i in range(words.length()):
 		words_dict[i] = words[i]
@@ -39,7 +39,7 @@ func _ready():
 	
 	var pinyin_file = FileAccess.open("res://Assets/pinyin.json", FileAccess.READ)
 	pinyin_dict = JSON.parse_string(pinyin_file.get_as_text())
-	words_file.close()
+	pinyin_file.close()
 	
 	_reset_game()
 	
